@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/32189cb4ee.js"></script>
+    <link rel="stylesheet" href="Food-business.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">← Back</a>
+        </div>
+    </nav>
+
+        <div class="container py-5">
+            <h3 id="title" class="text-center mb-4"></h3>
+            <div class="row" id="menu"></div>
+        </div>
+
+        <a href="https://wa.me/917036803984" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+            <script>
+                const category = new URLSearchParams(window.location.search).get("category");
+
+                const data = {
+                tiffin: [
+                    { name: "Idli", price: "₹30", img: "https://www.foodiaq.com/wp-content/uploads/2025/06/Idli-chutney-sambar.jpg" },
+                    { name: "Dosa", price: "₹40", img: "https://selfiefamily.com/wp-content/uploads/2024/11/Dosa.jpg" },
+                    { name: "Poori", price: "₹50", img: "https://media.istockphoto.com/id/502759669/photo/halwa-puri-breakfast.jpg?s=612x612&w=0&k=20&c=pAVZBHulOXX7o3HOXgmRQAGsTFJuoAL3UbZirxLnpJg=" },
+                    { name: "Wada", price: "₹40", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-aHSHL7GC7HvGUv78zChO557pf4hV8xkepQ&s" },
+                    { name: "Mysor-Bonda", price: "₹40", img: "https://t3.ftcdn.net/jpg/16/66/78/36/360_F_1666783628_Gk8IlnhvNs5tC2y73H1A1T1fkq2fogRm.jpg" },
+                    { name: "Idli-Wada", price: "₹40", img: "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg" },
+                ],
+                fastfood: [
+                    { name: "Noodles", price: "₹60", img: "https://media.istockphoto.com/id/1393404893/photo/teriyaki-shrimp-with-ramen-noodles.jpg?s=612x612&w=0&k=20&c=9N3HN7RRUbG5NBVLwyI3fUHByXDQVI6G3aBDUBQB-R8=" },
+                    { name: "Fried Rice", price: "₹80", img: "images/friedrice.jpg" }
+                ],
+                meals: [
+                    { name: "Veg Meals", price: "₹100", img: "images/meals.jpg" }
+                ],
+                snacks: [
+                    { name: "Samosa", price: "₹15", img: "images/samosa.jpg" }
+                ]
+                };
+
+                if (!data[category]) {
+                document.getElementById("title").innerText = "Menu Not Found";
+                } else {
+                document.getElementById("title").innerText =
+                    category.charAt(0).toUpperCase() + category.slice(1) + " Menu";
+
+                data[category].forEach(item => {
+                    document.getElementById("menu").innerHTML += `
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                        <img src="${item.img}" class="card-img-top menu-img" alt="${item.name}">
+                        <div class="card-body text-center">
+                            <h5>${item.name}</h5>
+                            <p class="text-success font-weight-bold">${item.price}</p>
+                            <a href="https://wa.me/917036803984?text=I%20want%20to%20order%20${item.name}"
+                            target="_blank"
+                            class="btn btn-main btn-block">
+                            Order on WhatsApp
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                    `;
+                });
+                }
+             </script>
+
+
+</body>
+</html>

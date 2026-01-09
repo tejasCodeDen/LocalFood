@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop Menu</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="javascript:history.back()">← Back</a>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <h3 id="shopName" class="text-center mb-4"></h3>
+  <div class="row" id="menu"></div>
+</div>
+
+<script>
+const centerId = new URLSearchParams(window.location.search).get("center");
+
+const shopData = {
+  1: {
+    name: "Sri Sai Tiffin Center",
+    menu: [
+      { name: "Idli", price: 30 },
+      { name: "Dosa", price: 40 }
+    ]
+  },
+  2: {
+    name: "Amma Home Foods",
+    menu: [
+      { name: "Poori", price: 50 }
+    ]
+  },
+  3: {
+    name: "Royal Fast Foods",
+    menu: [
+      { name: "Burger", price: 60 },
+      { name: "Fried Rice", price: 80 }
+    ]
+  }
+};
+
+const shop = shopData[centerId];
+
+document.getElementById("shopName").innerText = shop.name;
+
+shop.menu.forEach(item => {
+  document.getElementById("menu").innerHTML += `
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card p-3 text-center shadow-sm">
+        <h5>${item.name}</h5>
+        <p class="text-success">₹${item.price}</p>
+        <button class="btn btn-main">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>

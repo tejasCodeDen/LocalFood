@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LocalFood</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/32189cb4ee.js"></script>
+<link rel="stylesheet" href="Food-business.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">🍽️ LocalFood</a>
+    <a href="#loginBox" class="btn btn-main btn-sm">Login</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>Affordable Home Food Near You</h1>
+    <p>• Tiffin • Chinese • Home Meals</p>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row text-center">
+
+      <div class="col-12 col-sm-6 col-md-3">
+          <a href="centers.html?category=tiffin" class="text-dark text-decoration-none">
+            <div class="category-card">
+              <i class="fas fa-bowl-rice fa-2x mb-2"></i>
+              <h5>Tiffin</h5>
+            </div>
+          </a>
+
+        </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="centers.html?category=tiffin" class="text-dark text-decoration-none">
+              <div class="category-card">
+                <i class="fas fa-burger fa-2x mb-2"></i>
+                <h5>Fast Food</h5>
+              </div>
+            </a>
+
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="centers.html?category=meals" class="text-dark text-decoration-none">
+              <div class="category-card">
+                <i class="fas fa-utensils fa-2x mb-2"></i>
+                <h5>Meals</h5>
+              </div>
+            </a>
+
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="centers.html?category=snacks" class="text-dark text-decoration-none">
+              <div class="category-card">
+                <i class="fas fa-cookie fa-2x mb-2"></i>
+                <h5>Snacks</h5>
+              </div>
+            </a>
+          </div>
+  </div>
+</section>
+
+<div class="auth-card" id="loginBox">
+
+<div id="login">
+<h4 class="text-center">Login</h4>
+<input class="form-control mb-2" placeholder="Mobile or Email">
+<input type="password" class="form-control mb-2" placeholder="Password">
+<button class="btn btn-main btn-block">Login</button>
+<p class="text-center mt-2">
+<a href="#" onclick="showRegister()">New user? Register</a>
+</p>
+</div>
+
+<div id="register" style="display:none;">
+<h4 class="text-center">Register</h4>
+<input class="form-control mb-2" placeholder="Name">
+<input class="form-control mb-2" placeholder="Mobile">
+<input class="form-control mb-2" placeholder="Email">
+<input type="password" class="form-control mb-2" placeholder="Password">
+<button class="btn btn-main btn-block">Register</button>
+<p class="text-center mt-2">
+<a href="#" onclick="showLogin()">Back to Login</a>
+</p>
+</div>
+
+</div>
+
+<script>
+function showRegister(){
+document.getElementById("login").style.display="none";
+document.getElementById("register").style.display="block";
+}
+function showLogin(){
+document.getElementById("register").style.display="none";
+document.getElementById("login").style.display="block";
+}
+</script>
+
+<html>

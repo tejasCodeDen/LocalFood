@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Food Centers</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">← Back</a>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <h3 id="title" class="text-center mb-4"></h3>
+  <div class="row" id="centers"></div>
+</div>
+
+<script>
+const category = new URLSearchParams(window.location.search).get("category");
+
+const centersData = [
+  { id: 1, name: "Sri Sai Tiffin Center", category: "tiffin", location: "LB Nagar" },
+  { id: 2, name: "Amma Home Foods", category: "tiffin", location: "Uppal" },
+  { id: 3, name: "Royal Fast Foods", category: "fastfood", location: "Dilsukhnagar" },
+  { id: 4, name: "Healthy Meals Point", category: "meals", location: "Kothapet" }
+];
+
+document.getElementById("title").innerText =
+  category.charAt(0).toUpperCase() + category.slice(1) + " Centers";
+
+centersData
+  .filter(c => c.category === category)
+  .forEach(center => {
+    document.getElementById("centers").innerHTML += `
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card p-3 shadow-sm">
+          <h5>${center.name}</h5>
+          <p class="text-muted">${center.location}</p>
+          <a href="shop.html?center=${center.id}" class="btn btn-main btn-block">
+            View Menu
+          </a>
+        </div>
+      </div>
+    `;
+  });
+</script>
+
+</body>
+</html>

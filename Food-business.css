@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ff6f00 !important;
+}
+
+.btn-main {
+    background-color: #ff6f00;
+    color: white;
+    border: none;
+}
+
+.hero {
+    background: linear-gradient(to right, #ff9800, #ff5722);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.category-card {
+    background: white;
+    padding: 25px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.auth-card {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.menu-img {
+    width: 75%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto 0; /* centers image horizontally */
+    border-radius: 8px;  /* optional: smooth corners */
+}
+@media (max-width: 576px) {
+    .menu-img {
+        width: 85%;
+        height: 140px;
+    }
+}
