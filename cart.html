@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Your Cart</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="FoodbusinessWebsite.css">
+<script src="https://kit.fontawesome.com/32189cb4ee.js"></script>
+</head>
+
+<body class="centers-bg">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand logo-left" href="javascript:history.back()">← Back</a>
+        <span class="navbar-text font-weight-bold">Your Cart</span>
+    </div>
+</nav>
+
+<!-- CART ITEMS -->
+<div class="container py-4 mb-5">
+    <div id="cartItems"></div>
+</div>
+
+<!-- FIXED TOTAL BAR -->
+<div class="cart-footer shadow-lg">
+    <div class="container">
+
+        <div class="row align-items-center">
+            <!-- LEFT -->
+            <div class="col-7">
+                <small class="text-muted" id="centerFooter"></small>
+                <h5 class="mb-0 font-weight-bold" id="totalPrice"></h5>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-5 text-right">
+                <button class="btn btn-main btn-block">
+                    Proceed →
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+/* CART FUNCTIONS */
+
+function getCart() {
+    var cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function renderCart() {
+
+    var cart = getCart();
+    var container = document.getElementById("cartItems");
+    var total = 0;
+
+    container.innerHTML = "";
+
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="text-center mt-5">
+                <h5>Your cart is empty</h5>
+                <p class="text-muted">Add items to see them here</p>
+            </div>
+        `;
+        document.getElementById("totalPrice").innerText = "";
+        document.getElementById("centerFooter").innerText = "";
+        return;
+    }
+
+    /* LOOP THROUGH CART ITEMS */
+    for (var i = 0; i < cart.length; i++) {
+        var item = cart[i];
+        total += item.price * item.qty;
+
+        container.innerHTML += `
+        <div class="cart-card mb-3">
+            <div class="row align-items-center">
+
+                <!-- IMAGE -->
+                <div class="col-3 cart-img-wrapper">
+                    <img src="${item.img || 'https://via.placeholder.com/100'}"
+                        class="cart-img">
+                </div>
+
+                <!-- DETAILS -->
+                <div class="col-6">
+                    <h6 class="mb-1">${item.name}</h6>
+                    <small class="text-muted">${item.centerName}</small>
+                    <p class="text-success font-weight-bold mb-0">₹${item.price}</p>
+                </div>
+
+                <!-- QTY -->
+                <div class="col-3 text-center">
+                    <div class="qty-box">
+                        <button onclick="decreaseQty(${i})">−</button>
+                        <span>${item.qty}</span>
+                        <button onclick="increaseQty(${i})">+</button>
+                    </div>
+                    <button class="btn btn-sm btn-link text-danger mt-1"
+                    onclick="removeItem(${i})">Remove</button>
+                </div>
+
+            </div>
+        </div>
+        `;
+    }
+
+    /* ✅ TOTAL PRICE */
+    document.getElementById("totalPrice").innerText =
+        "Total: ₹" + total;
+
+    /* ✅ CENTER NAME + ITEM COUNT (ADD HERE) */
+    document.getElementById("centerFooter").innerText =
+        cart[0].centerName + " • " + cart.length + " items";
+}
+
+
+/* quantity controls */
+function increaseQty(index) {
+    var cart = getCart();
+    cart[index].qty++;
+    saveCart(cart);
+    renderCart();
+}
+
+function decreaseQty(index) {
+    var cart = getCart();
+    if (cart[index].qty > 1) {
+        cart[index].qty--;
+    } else {
+        cart.splice(index, 1);
+    }
+    saveCart(cart);
+    renderCart();
+}
+
+function removeItem(index) {
+    var cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    renderCart();
+}
+
+renderCart();
+</script>
+
+</body>
+</html>

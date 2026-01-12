@@ -2,81 +2,229 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Menu</title>
+    <title>Menu | LocalFood</title>
 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/32189cb4ee.js"></script>
-    <link rel="stylesheet" href="Food-business.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/32189cb4ee.js" crossorigin="anonymous"></script>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="FoodbusinessWebsite.css">
 </head>
 
-<body>
+<body class="centers-bg">
 
-    <nav class="navbar navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">← Back</a>
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand logo-left" href="javascript:history.back()">← Back</a>
+        <a href="cart.html" class="btn btn-main btn-sm">View Cart</a>
+    </div>
+</nav>
+
+
+<!-- ✅ SHOP HEADER (ZOMATO STYLE) -->
+<section class="py-4">
+    <div class="container">
+
+        <div class="shop-header shadow-sm p-3">
+            <div class="row align-items-center">
+                <!-- Shop Image -->
+                <div class="col-12 col-md-3 text-center">
+                    <img id="centerImg" src="" class="shop-img" alt="Center Image">
+                </div>
+
+                <!-- Shop Details -->
+                <div class="col-12 col-md-9">
+                    <h3 id="centerName" class="mt-3 mt-md-0"></h3>
+                    <p id="centerAddress" class="text-muted mb-1"></p>
+
+                    <span class="badge badge-success p-2 mr-2">
+                        <i class="fas fa-star"></i> 4.2
+                    </span>
+
+                    <span class="badge badge-light p-2">
+                        <i class="fas fa-clock"></i> 25-35 mins
+                    </span>
+
+                    <p class="mt-2 text-dark">
+                        <strong>Affordable food • Quick service • Hygienic</strong>
+                    </p>
+                </div>
+            </div>
         </div>
-    </nav>
 
-        <div class="container py-5">
-            <h3 id="title" class="text-center mb-4"></h3>
-            <div class="row" id="menu"></div>
-        </div>
+    </div>
+</section>
 
-        <a href="https://wa.me/917036803984" class="whatsapp-float" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
 
-            <script>
-                const category = new URLSearchParams(window.location.search).get("category");
+<!-- ✅ MENU ITEMS -->
+<section class="pb-5">
+    <div class="container">
+        <h4 class="mb-4 text-center">Menu Items</h4>
+        <div class="row" id="menuContainer"></div>
+    </div>
+</section>
 
-                const data = {
-                tiffin: [
-                    { name: "Idli", price: "₹30", img: "https://www.foodiaq.com/wp-content/uploads/2025/06/Idli-chutney-sambar.jpg" },
-                    { name: "Dosa", price: "₹40", img: "https://selfiefamily.com/wp-content/uploads/2024/11/Dosa.jpg" },
-                    { name: "Poori", price: "₹50", img: "https://media.istockphoto.com/id/502759669/photo/halwa-puri-breakfast.jpg?s=612x612&w=0&k=20&c=pAVZBHulOXX7o3HOXgmRQAGsTFJuoAL3UbZirxLnpJg=" },
-                    { name: "Wada", price: "₹40", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-aHSHL7GC7HvGUv78zChO557pf4hV8xkepQ&s" },
-                    { name: "Mysor-Bonda", price: "₹40", img: "https://t3.ftcdn.net/jpg/16/66/78/36/360_F_1666783628_Gk8IlnhvNs5tC2y73H1A1T1fkq2fogRm.jpg" },
-                    { name: "Idli-Wada", price: "₹40", img: "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg" },
-                ],
-                fastfood: [
-                    { name: "Noodles", price: "₹60", img: "https://media.istockphoto.com/id/1393404893/photo/teriyaki-shrimp-with-ramen-noodles.jpg?s=612x612&w=0&k=20&c=9N3HN7RRUbG5NBVLwyI3fUHByXDQVI6G3aBDUBQB-R8=" },
-                    { name: "Fried Rice", price: "₹80", img: "images/friedrice.jpg" }
-                ],
-                meals: [
-                    { name: "Veg Meals", price: "₹100", img: "images/meals.jpg" }
-                ],
-                snacks: [
-                    { name: "Samosa", price: "₹15", img: "images/samosa.jpg" }
-                ]
-                };
 
-                if (!data[category]) {
-                document.getElementById("title").innerText = "Menu Not Found";
-                } else {
-                document.getElementById("title").innerText =
-                    category.charAt(0).toUpperCase() + category.slice(1) + " Menu";
+<script>
+/* ----------------------------------------------
+   STEP 1: GET CENTER ID FROM URL
+----------------------------------------------- */
+var urlParams = new URLSearchParams(window.location.search);
+var centerId = urlParams.get("center");
 
-                data[category].forEach(item => {
-                    document.getElementById("menu").innerHTML += `
-                    <div class="col-12 col-sm-6 col-md-4 mb-4">
-                        <div class="card shadow-sm h-100">
-                        <img src="${item.img}" class="card-img-top menu-img" alt="${item.name}">
-                        <div class="card-body text-center">
-                            <h5>${item.name}</h5>
-                            <p class="text-success font-weight-bold">${item.price}</p>
-                            <a href="https://wa.me/917036803984?text=I%20want%20to%20order%20${item.name}"
-                            target="_blank"
-                            class="btn btn-main btn-block">
-                            Order on WhatsApp
-                            </a>
+/* ----------------------------------------------
+   STEP 2: CENTER DETAILS (REUSABLE)
+   You can add unlimited food centers here later
+----------------------------------------------- */
+var centersDetails = {
+    1: {
+        name: "Sri Sai Tiffin Center",
+        address: "LB Nagar, Hyderabad",
+        img: "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg"
+    },
+    2: {
+        name: "Amma Home Foods",
+        address: "Uppal, Hyderabad",
+        img: "https://t3.ftcdn.net/jpg/16/66/78/36/360_F_1666783628_Gk8IlnhvNs5tC2y73H1A1T1fkq2fogRm.jpg"
+    },
+    3: {
+        name: "Royal Fast Foods",
+        address: "Dilsukhnagar, Hyderabad",
+        img: "https://media.istockphoto.com/id/1205211085/photo/homemade-hamburger-and-french-fries.jpg?s=612x612&w=0&k=20&c=4UmdGxA3cu6D5LqC8u6i-VdTnNJ5dTjD9qzNqem1mE0="
+    }
+};
+
+/* ----------------------------------------------
+   STEP 3: MENUS FOR EACH CENTER (REUSABLE)
+----------------------------------------------- */
+var menus = {
+    1: [
+        { name: "Idli", price: 30, img: "https://www.foodiaq.com/wp-content/uploads/2025/06/Idli-chutney-sambar.jpg", desc: "Soft idli served with chutney & sambar" },
+        { name: "Dosa", price: 40, img: "https://selfiefamily.com/wp-content/uploads/2024/11/Dosa.jpg", desc: "Crispy dosa with potato masala" },
+        { name: "Poori", price: 50, img: "https://media.istockphoto.com/id/502759669/photo/halwa-puri-breakfast.jpg", desc: "Poori with curry & chutney" }
+    ],
+
+    2: [
+        { name: "Mysore Bonda", price: 40, img: "https://t3.ftcdn.net/jpg/16/66/78/36/360_F_1666783628_Gk8IlnhvNs5tC2y73H1A1T1fkq2fogRm.jpg", desc: "Hot crispy bonda, best for breakfast" },
+        { name: "Vada", price: 30, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-aHSHL7GC7HvGUv78zChO557pf4hV8xkepQ&s", desc: "Medu vada with chutney & sambar" }
+    ],
+
+    3: [
+        { name: "Noodles", price: 60, img: "https://media.istockphoto.com/id/1393404893/photo/teriyaki-shrimp-with-ramen-noodles.jpg", desc: "Spicy veg noodles with sauces" },
+        { name: "Fried Rice", price: 80, img: "https://media.istockphoto.com/id/1393400355/photo/fried-rice.jpg?s=612x612&w=0&k=20&c=t_wf_-j2JSafM6m_hS3hK0j_n6gRNqKf0ePn7fshwI4=", desc: "Veg fried rice with extra taste" }
+    ]
+};
+
+
+/* ----------------------------------------------
+   STEP 4: DISPLAY CENTER DETAILS
+----------------------------------------------- */
+var center = centersDetails[centerId];
+
+if (!center) {
+    document.getElementById("centerName").innerText = "Center Not Found";
+} else {
+    document.getElementById("centerName").innerText = center.name;
+    document.getElementById("centerAddress").innerText = center.address;
+    document.getElementById("centerImg").src = center.img;
+}
+
+/* ----------------------------------------------
+   STEP 5: DISPLAY MENU ITEMS
+----------------------------------------------- */
+var menuContainer = document.getElementById("menuContainer");
+
+if (!menus[centerId]) {
+    menuContainer.innerHTML = "<p class='text-center w-100 text-danger'>No Menu Found</p>";
+} else {
+
+    for (var i = 0; i < menus[centerId].length; i++) {
+
+        var item = menus[centerId][i];
+
+        menuContainer.innerHTML += `
+            <div class="col-12 col-md-6 mb-4">
+                <div class="menu-card shadow-sm">
+                    <div class="row no-gutters">
+
+                        <!-- Food Image -->
+                        <div class="col-4 text-center">
+                            <img src="${item.img}" class="menu-item-img" alt="${item.name}">
                         </div>
+
+                        <!-- Food Details -->
+                        <div class="col-8">
+                            <div class="p-3">
+                                <h5>${item.name}</h5>
+                                <p class="text-muted mb-1">${item.desc}</p>
+                                <p class="text-success font-weight-bold">₹${item.price}</p>
+
+                                <button class="btn btn-main btn-sm"
+                                    onclick="addToCart(
+                                        centerId,
+                                        document.getElementById('centerName').innerText,
+                                        '${item.name}',
+                                        ${item.price},
+                                        '${item.img}'
+                                    )">
+                                        ADD TO CART
+                                </button>
+                            </div>
                         </div>
+
                     </div>
-                    `;
-                });
-                }
-             </script>
+                </div>
+            </div>
+        `;
+    }
+}
+</script>
+
+
+<script>
+function getCart() {
+    var cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function addToCart(centerId, centerName, itemName, itemPrice, itemImg) {
+
+    var cart = getCart();
+    var found = false;
+    console.log(itemImg);
+    
+    for (var i = 0; i < cart.length; i++) {
+        if (cart[i].name === itemName && cart[i].centerId == centerId) {
+            cart[i].qty = cart[i].qty + 1;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cart.push({
+            centerId: centerId,
+            centerName: centerName,
+            name: itemName,
+            price: itemPrice,
+            img: itemImg,     // ✅ IMAGE STORED
+            qty: 1
+        });
+    }
+
+    saveCart(cart);
+    alert(itemName + " added to cart");
+}
+</script>
+
 
 
 </body>

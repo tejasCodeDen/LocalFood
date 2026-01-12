@@ -1,0 +1,220 @@
+/* Basic body design */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar logo left margin */
+.logo-left {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #ff6f00 !important;
+}
+
+/* Login button right margin */
+.login-right {
+    margin-right: 10px;
+}
+
+/* Main button design */
+.btn-main {
+    background-color: #ff6f00;
+    color: white;
+    border: none;
+}
+
+.btn-main:hover {
+    background-color: #e65c00;
+}
+
+/* Hero section design */
+.hero {
+    background: linear-gradient(to right, #ff9800, #ff5722);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* Category box card */
+.category-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid #ddd;
+}
+
+/* Category image style */
+.category-img {
+    width: 75%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+/* Carousel image size */
+.carousel-img {
+    height: 360px;
+    object-fit: cover;
+    border-radius: 14px;
+    background-size: cover;
+}
+
+/* Login/Register card styling */
+.auth-card {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+
+     /* centers-css */
+
+/* Pleasant background for centers page */
+.centers-bg {
+    background: linear-gradient(to bottom, #fff3e0, #ffffff);
+    min-height: 100vh;
+}
+
+.center-img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.center-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+    /* menu-css */
+  
+/* shop header zomato style */
+.shop-header {
+    background: white;
+    border-radius: 12px;
+}
+
+.shop-img {
+    width: 90%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Menu card zomato style */
+.menu-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+/* food item images */
+.menu-item-img {
+    width: 90%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 10px auto;
+    display: block;
+}
+
+
+/* ------------------------
+    STYLE CART
+------------------------- */
+
+.cart-card {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* ------------------------
+   FINAL CART IMAGE FIX
+------------------------- */
+
+/* wrapper controls size */
+.cart-img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* force image size */
+.cart-img {
+    width: 70px !important;
+    height: 70px !important;
+    max-width: 70px !important;
+    max-height: 70px !important;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* override bootstrap image rules */
+.cart-img img,
+.cart-img.card-img-top,
+.cart-img.img-fluid {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+/* quantity box */
+.qty-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ff6f00;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.qty-box button {
+    background: white;
+    border: none;
+    width: 30px;
+    font-weight: bold;
+    color: #ff6f00;
+}
+
+.qty-box span {
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* fixed footer */
+.cart-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+
+/* ------------------------
+   PROFESSIONAL CART FOOTER
+------------------------- */
+
+.cart-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 12px 0;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}
+
+.cart-footer .btn-main {
+    font-size: 16px;
+    padding: 10px;
+}
+
+

@@ -1,54 +1,332 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Food Centers</title>
+    <meta charset="UTF-8">
+    <title>Food Centers</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/32189cb4ee.js" crossorigin="anonymous"></script>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="FoodbusinessWebsite.css">
 </head>
 
-<body>
+<body class="centers-bg">
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-light bg-white shadow-sm">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">← Back</a>
-  </div>
+    <div class="container">
+        <a class="navbar-brand logo-left" href="javascript:history.back()">← Back</a>
+        <span class="navbar-text font-weight-bold" id="pageTitle">Food Centers</span>
+    </div>
 </nav>
 
+<!-- MAIN SECTION -->
 <div class="container py-5">
-  <h3 id="title" class="text-center mb-4"></h3>
-  <div class="row" id="centers"></div>
+
+    <div class="text-center mb-4">
+        <p id="locationStatus" class="text-dark font-weight-bold">
+            Getting your location...
+        </p>
+
+        <p id="userLocationText" class="text-muted"></p>
+
+        <p class="text-muted">
+            Note: If you deny GPS permission, test location (Turkayamjal) will be used.
+        </p>
+
+        <!-- ✅ Test button -->
+        <button class="btn btn-outline-dark btn-sm mt-2" onclick="useTestLocation()">
+            Use Turkayamjal Test Location
+        </button>
+    </div>
+
+    <div class="row" id="centersContainer"></div>
 </div>
 
-<script>
-const category = new URLSearchParams(window.location.search).get("category");
 
-const centersData = [
-  { id: 1, name: "Sri Sai Tiffin Center", category: "tiffin", location: "LB Nagar" },
-  { id: 2, name: "Amma Home Foods", category: "tiffin", location: "Uppal" },
-  { id: 3, name: "Royal Fast Foods", category: "fastfood", location: "Dilsukhnagar" },
-  { id: 4, name: "Healthy Meals Point", category: "meals", location: "Kothapet" }
+<script>
+/* STEP 1: GET CATEGORY */
+var urlParams = new URLSearchParams(window.location.search);
+var category = urlParams.get("category");
+
+if (category) {
+    document.getElementById("pageTitle").innerText = category.toUpperCase() + " Centers";
+}
+
+/* STEP 2: CENTER DATA */
+var foodCenters = [
+
+    /* TIFFIN */
+    {
+        id: 1,
+        category: "tiffin",
+        name: "Raja Tiffins (Turkayamjal)",
+        address: "Turkayamjal X Road",
+        img: "https://www.aladakshinapuramlo.com/wp-content/uploads/2024/08/catering-tifffins-1.jpg",
+        lat: 17.2729,
+        lon: 78.5889
+    },
+    {
+        id: 2,
+        category: "tiffin",
+        name: "Sri Sai Tiffin Center",
+        address: "Near Sriramnagar Colony",
+        img: "https://selfiefamily.com/wp-content/uploads/2024/11/Dosa.jpg",
+        lat: 17.2748,
+        lon: 78.5942
+    },
+    {
+        id: 3,
+        category: "tiffin",
+        name: "Amma Home Foods",
+        address: "Turkayamjal Main Road",
+        img: "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg",
+        lat: 17.2706,
+        lon: 78.5926
+    },
+    {
+        id: 3,
+        category: "tiffin",
+        name: "Amma Home Foods",
+        address: "Turkayamjal Main Road",
+        img: "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg",
+        lat: 17.2706,
+        lon: 78.5926
+    },
+    
+
+    /* FASTFOOD */
+    {
+        id: 4,
+        category: "fastfood",
+        name: "Nayeem Fast Food Center",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1205211085/photo/homemade-hamburger-and-french-fries.jpg",
+        lat: 17.2691,
+        lon: 78.5742
+    },
+    {
+        id: 5,
+        category: "fastfood",
+        name: "Nani's Food Center",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1393404893/photo/teriyaki-shrimp-with-ramen-noodles.jpg",
+        lat: 17.2760,
+        lon: 78.5909
+    },
+    {
+        id: 5,
+        category: "fastfood",
+        name: "Nani's Food Center",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1393404893/photo/teriyaki-shrimp-with-ramen-noodles.jpg",
+        lat: 17.2760,
+        lon: 78.5909
+    },
+
+    /* MEALS */
+    {
+        id: 6,
+        category: "meals",
+        name: "Healthy Meals Point",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1302432064/photo/south-indian-meals-served-on-banana-leaf.jpg",
+        lat: 17.2753,
+        lon: 78.5960
+    },
+
+    {
+        id: 6,
+        category: "meals",
+        name: "Healthy Meals Point",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1302432064/photo/south-indian-meals-served-on-banana-leaf.jpg",
+        lat: 17.2753,
+        lon: 78.5960
+    },
+    {
+        id: 6,
+        category: "meals",
+        name: "Healthy Meals Point",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1302432064/photo/south-indian-meals-served-on-banana-leaf.jpg",
+        lat: 17.2753,
+        lon: 78.5960
+    },
+
+    /* SNACKS */
+    {
+        id: 8,
+        category: "snacks",
+        name: "Snacks Time Evening",
+        address: "Turkayamjal",
+        img: "https://media.istockphoto.com/id/1264605392/photo/samosa.jpg",
+        lat: 17.2730,
+        lon: 78.5908
+    },
+    {
+        id: 9,
+        category: "snacks",
+        name: "Evening Snack Corner",
+        address: "Near Sriramnagar Colony",
+        img: "https://media.istockphoto.com/id/1431042782/photo/indian-evening-snack-pakora.jpg",
+        lat: 17.2764,
+        lon: 78.5898
+    },
+    {
+        id: 9,
+        category: "snacks",
+        name: "Evening Snack Corner",
+        address: "Near Sriramnagar Colony",
+        img: "https://media.istockphoto.com/id/1431042782/photo/indian-evening-snack-pakora.jpg",
+        lat: 17.2764,
+        lon: 78.5898
+    },
+    {
+        id: 9,
+        category: "snacks",
+        name: "Evening Snack Corner",
+        address: "Near Sriramnagar Colony",
+        img: "https://media.istockphoto.com/id/1431042782/photo/indian-evening-snack-pakora.jpg",
+        lat: 17.2764,
+        lon: 78.5898
+    }
 ];
 
-document.getElementById("title").innerText =
-  category.charAt(0).toUpperCase() + category.slice(1) + " Centers";
+/* STEP 3: DISTANCE FUNCTION */
+function getDistanceKm(lat1, lon1, lat2, lon2) {
+    var R = 6371;
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
 
-centersData
-  .filter(c => c.category === category)
-  .forEach(center => {
-    document.getElementById("centers").innerHTML += `
-      <div class="col-12 col-md-4 mb-4">
-        <div class="card p-3 shadow-sm">
-          <h5>${center.name}</h5>
-          <p class="text-muted">${center.location}</p>
-          <a href="shop.html?center=${center.id}" class="btn btn-main btn-block">
-            View Menu
-          </a>
+    var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
+/* ✅ TEST LOCATION (Turkayamjal) */
+var testLat = 17.2732;
+var testLon = 78.5911;
+
+function useTestLocation() {
+    document.getElementById("locationStatus").innerText =
+        "Using Turkayamjal test location (3KM filter applied)";
+
+    document.getElementById("userLocationText").innerText =
+        "Test location: " + testLat.toFixed(4) + ", " + testLon.toFixed(4);
+
+    showNearbyCenters(testLat, testLon);
+}
+
+/* STEP 4: GPS LOCATION */
+navigator.geolocation.getCurrentPosition(
+    function(position) {
+        var userLat = position.coords.latitude;
+        var userLon = position.coords.longitude;
+
+        document.getElementById("locationStatus").innerText =
+            "Showing centers within 3 KM from your location";
+
+        document.getElementById("userLocationText").innerText =
+            "Your location: " + userLat.toFixed(4) + ", " + userLon.toFixed(4);
+
+        showNearbyCenters(userLat, userLon);
+    },
+    function() {
+        document.getElementById("locationStatus").innerText =
+            "Location denied. Click below button to test with Turkayamjal location.";
+
+        document.getElementById("userLocationText").innerText =
+            "Tip: Allow location in browser settings to show real distances.";
+
+        showAllCenters();
+    }
+);
+
+/* STEP 5: SHOW NEARBY CENTERS */
+function showNearbyCenters(userLat, userLon) {
+
+    var radius = 3;
+    var container = document.getElementById("centersContainer");
+    container.innerHTML = "";
+
+    var nearbyCenters = [];
+
+    for (var i = 0; i < foodCenters.length; i++) {
+        var center = foodCenters[i];
+
+        if (center.category !== category) continue;
+
+        var distance = getDistanceKm(userLat, userLon, center.lat, center.lon);
+
+        if (distance <= radius) {
+            nearbyCenters.push({ center: center, distance: distance });
+        }
+    }
+
+    if (nearbyCenters.length === 0) {
+        document.getElementById("locationStatus").innerText =
+            "No centers found within 3 KM radius.";
+
+        return;
+    }
+
+    nearbyCenters.sort(function(a, b) {
+        return a.distance - b.distance;
+    });
+
+    for (var j = 0; j < nearbyCenters.length; j++) {
+        addCenterCard(nearbyCenters[j].center, nearbyCenters[j].distance);
+    }
+}
+
+/* SHOW ALL */
+function showAllCenters() {
+    var container = document.getElementById("centersContainer");
+    container.innerHTML = "";
+
+    for (var i = 0; i < foodCenters.length; i++) {
+        var center = foodCenters[i];
+        if (center.category === category) {
+            addCenterCard(center, null);
+        }
+    }
+}
+
+/* ADD CENTER CARD */
+function addCenterCard(center, distance) {
+
+    var container = document.getElementById("centersContainer");
+
+    var distanceText = "";
+    if (distance !== null) {
+        distanceText = `<p class="text-success font-weight-bold">${distance.toFixed(2)} KM away</p>`;
+    }
+
+    container.innerHTML += `
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card shadow-sm h-100 center-card">
+                <img src="${center.img}" class="card-img-top center-img" alt="${center.name}">
+                <div class="card-body text-center">
+                    <h5>${center.name}</h5>
+                    <p class="text-muted">${center.address}</p>
+                    ${distanceText}
+                    <a href="menu.html?center=${center.id}" class="btn btn-main btn-block">
+                        View Menu
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     `;
-  });
+}
 </script>
 
 </body>
